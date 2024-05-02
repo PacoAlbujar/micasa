@@ -1,23 +1,66 @@
 ﻿<html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<script type="text/javascript" src="copperlichtdata/copperlicht.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	 <meta content="Francisco Manuel Albujar Gordillo" name="author">
+	 <meta content="Mi casa 2 plantas" name="description">
+    <script type="text/javascript" src="copperlichtdata/copperlicht.js"></script>
+	 <title>Mi Casa</title>
+
+	 <style type="text/css"> 
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* Evitar que aparezca la barra de desplazamiento */
+        }
+
+        #3darea {
+            display: block;
+            width: 100vw; /* Utiliza el 100% del ancho de la ventana */
+            height: 100vh; /* Utiliza el 100% del alto de la ventana */
+            background-color: #000000;
+        }
+
+        @media (max-width: 600px) {
+            /* Estilos específicos para pantallas con ancho máximo de 600px */
+            #3darea {
+                width: 100%; /* Utiliza el 100% del ancho disponible */
+                height: 50vh; /* Utiliza el 50% del alto disponible */
+            }
+        }
+
+        @media (min-width: 601px) and (max-width: 1024px) {
+            /* Estilos específicos para tablets (ancho entre 601px y 1024px) */
+            #3darea {
+                width: 80%; /* Puedes ajustar el porcentaje según sea necesario */
+                height: 70vh; /* Puedes ajustar el porcentaje según sea necesario */
+            }
+        }
+    </style>
 </head>
 <body>
-	<div align="center">
-		<canvas id="3darea" width="800" height="600" style="background-color:#000000">
-		</canvas>
-	</div>
-	<script type="text/javascript">
-	<!--
-			startCopperLichtFromFile('3darea', 'copperlichtdata/micasa.ccbjs', 'Loading $PROGRESS$...', 'Error: This browser does not support WebGL (or it is disabled).<br/>See <a href=\"http://www.ambiera.com/copperlicht/browsersupport.html\">here</a> for details.');
-	-->
-	</script>
-	<br/>
-	<div align="center">
-		<small>Created using the <a href="http://www.ambiera.com/copperlicht/index.html">CopperLicht
- 		JavaScript 3D Engine</a> and the <a href="http://www.ambiera.com/coppercube/index.html">CopperCube 
-		3D Editor</a></small>
-	</div>
+    <div align="center">
+        <!-- El canvas donde se mostrará la aplicación WebGL -->
+        <canvas id="3darea"></canvas>
+    </div>
+    <script type="text/javascript">
+        // Agrega un manejador de eventos para el redimensionamiento de la ventana
+        window.addEventListener('resize', handleResize);
+
+        // Función que se llama cuando cambia el tamaño de la ventana
+        function handleResize() {
+            // Obtiene el elemento canvas
+            var canvas = document.getElementById('3darea');
+
+            // Ajusta el tamaño del canvas al tamaño de la ventana
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        // Llama al manejador de eventos una vez para establecer el tamaño inicial del canvas
+        handleResize();
+
+        // Inicia CopperLicht después de configurar el tamaño del canvas
+        startCopperLichtFromFile('3darea', 'copperlichtdata/micasa.ccbjs', 'Cargando $PROGRESS$...', 'Error: Este navegador no soporta WebGL (o no está activado).<br/>Vea <a href=\"http://es.wikipedia.org/wiki/WebGL\">aquí</a> para más detalles.');
+    </script>
 </body>
 </html>
